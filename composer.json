@@ -16,9 +16,6 @@
         "panix/engine": "*"
     },
     "autoload": {
-        "classmap": [
-            "CallbackWidget.php"
-        ],
         "psr-4": {
             "panix\\ext\\callback\\": ""
         }
