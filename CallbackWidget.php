@@ -10,7 +10,7 @@ namespace panix\ext\callback;
 
 use yii\web\View;
 use yii\helpers\Json;
-use yii\base\Widget;
+use panix\engine\data\Widget;
 
 /**
  * Class CallbackWidget

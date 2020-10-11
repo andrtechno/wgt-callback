@@ -27,4 +27,33 @@ or add
 
 to the require section of your `composer.json` file.
 
-1
+
+Usage
+-----
+add you config.php
+```
+'controllerMap' => [
+    'callback' => 'panix\ext\callback\CallbackController',
+],
+```
+
+add you view file
+
+[See modal options](https://www.yiiframework.com/extension/yiisoft/yii2-bootstrap4/doc/api/2.0/yii-bootstrap4-modal).
+
+```
+echo \panix\ext\callback\CallbackWidget::widget([
+    'id' => 'callback-modal',
+    'size' => 'modal-dialog-centered modal-dialog-scrollable',
+    'toggleButton' => false,
+    // modal options
+]);
+```
+
+Add you UrlManager rules
+```
+'rules' => [
+    'callback' => 'callback/index',
+    // ..
+]
+```

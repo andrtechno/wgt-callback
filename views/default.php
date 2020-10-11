@@ -3,6 +3,9 @@ use panix\engine\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+/**
+ * @var \yii\web\View $this
+ */
 Modal::begin([
         'id'=>$this->context->id,
     'title' => 'Обратный звонок',
@@ -21,6 +24,7 @@ Modal::begin([
 
 
 $form = ActiveForm::begin([
+    'action' => ['/callback'],
     'id' => 'callback-form',
     'options' => ['class' => 'form-auto'],
 ]) ?>
@@ -36,3 +40,29 @@ $form = ActiveForm::begin([
 <?php ActiveForm::end(); ?>
 
 <?php Modal::end();
+
+$this->registerJs("
+
+$('#callback-form').on('beforeSubmit', function () {
+    var yiiform = $(this);
+    // отправляем данные на сервер
+    $.ajax({
+            type: yiiform.attr('method'),
+            url: yiiform.attr('action'),
+            data: yiiform.serializeArray()
+        }
+    )
+    .done(function(data) {
+       if(data.success) {
+          // данные сохранены
+        } else {
+          // сервер вернул ошибку и не сохранил наши данные
+        }
+    })
+    .fail(function () {
+         // не удалось выполнить запрос к серверу
+    })
+
+    return false; // отменяем отправку данных формы
+})
+");
