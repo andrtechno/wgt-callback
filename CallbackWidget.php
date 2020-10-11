@@ -19,6 +19,9 @@ use panix\engine\data\Widget;
 class CallbackWidget extends Widget
 {
 
+    static $widget_name = 'Callback widget';
+    static $widget_description = 'Callback desctipyion';
+
     public $options = [];
     public $skin = 'default';
     public $id;
@@ -31,6 +34,12 @@ class CallbackWidget extends Widget
     public $size;
     public $closeButton = [];
     public $toggleButton = false;
+
+    public function __construct(array $config = [])
+    {
+        self::$widget_name = 'Call back';
+        parent::__construct($config);
+    }
 
     /**
      * @inheritdoc
