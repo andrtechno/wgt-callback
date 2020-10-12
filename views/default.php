@@ -26,10 +26,10 @@ Modal::begin([
 $form = ActiveForm::begin([
     'action' => ['/callback'],
     'id' => 'callback-form',
-    'options' => ['class' => 'form-auto'],
+    'options' => ['class' => ''],
 ]) ?>
-<?= $form->field($model, 'username') ?>
-<?= $form->field($model, 'phone') ?>
+<?= $form->field($model, 'username',['options'=>['class'=>'form-group form-group-auto']]) ?>
+<?= $form->field($model, 'phone',['options'=>['class'=>'form-group form-group-auto']])->widget(\panix\engine\widgets\MaskedInput::class,['mask'=>'+38 (099) 999-99-99']) ?>
 
 
     <div class="form-group text-center">
