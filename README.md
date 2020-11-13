@@ -1,4 +1,4 @@
-wgt-callback
+Widget callback
 ===========
 
 [![Latest Stable Version](https://poser.pugx.org/panix/wgt-callback/v/stable)](https://packagist.org/packages/panix/wgt-callback)
