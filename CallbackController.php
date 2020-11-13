@@ -16,6 +16,8 @@ class CallbackController extends Controller
      */
     public function actionIndex()
     {
+        $widget = new CallbackWidget();
+
         $model = new CallbackForm();
         $request = Yii::$app->getRequest();
         if ($request->isAjax) {
@@ -28,7 +30,7 @@ class CallbackController extends Controller
                 if ($model->validate()) {
                     $model->sendEmail();
                     return $this->asJson([
-                        'message' => Yii::t('wgt_CallbackWidget/default', 'SEND_SUCCESS'),
+                        'message' => $widget::t('default', 'SEND_SUCCESS'),
                         'success' => true
                     ]);
                 }
