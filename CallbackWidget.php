@@ -48,6 +48,7 @@ class CallbackWidget extends Widget
     {
         $model = new CallbackForm;
         $view = $this->getView();
+
         return $this->render($this->skin,['model'=>$model]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace panix\ext\callback;
 
+use Yii;
 use yii\base\Model;
 
 class CallbackForm extends Model
@@ -14,6 +15,7 @@ class CallbackForm extends Model
         return [
             [['username', 'phone'], 'required'],
             [['username'], 'string', 'min' => 2],
+            ['phone', 'panix\ext\telinput\PhoneInputValidator']
         ];
     }
 
@@ -26,11 +28,17 @@ class CallbackForm extends Model
     }
 
     public function sendEmail(){
+        if(Yii::$app->settings->get('wgt_CallbackWidget', 'email')){
+            $email = Yii::$app->settings->get('wgt_CallbackWidget', 'email');
+        }else{
+            $email = Yii::$app->settings->get('app', 'email');
+        }
         $mailer = Yii::$app->mailer;
-        $mailer->compose(['html' => 'mail.tpl'], ['model' => $this])
+        $mailer->htmlLayout = '@app/mail/layouts/html';
+        $mailer->compose(['html' => '@vendor/panix/wgt-callback/mail/mail.tpl'], ['model' => $this])
             ->setFrom(['noreply@' . Yii::$app->request->serverName => Yii::$app->name . ' robot'])
-            ->setTo([Yii::$app->settings->get('wgt_CallbackWidget', 'email') => Yii::$app->name])
-            ->setSubject(Yii::t('cart/default', 'MAIL_ADMIN_SUBJECT', $this->id))
+            ->setTo([$email => Yii::$app->name])
+            ->setSubject(Yii::t('default', '☎️ Обратный звонок'))
             ->send();
         return $mailer;
     }

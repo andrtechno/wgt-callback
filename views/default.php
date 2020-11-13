@@ -44,25 +44,22 @@ $form = ActiveForm::begin([
 $this->registerJs("
 
 $('#callback-form').on('beforeSubmit', function () {
-    var yiiform = $(this);
-    // отправляем данные на сервер
+    var form = $(this);
     $.ajax({
-            type: yiiform.attr('method'),
-            url: yiiform.attr('action'),
-            data: yiiform.serializeArray()
-        }
-    )
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serializeArray()
+    })
     .done(function(data) {
        if(data.success) {
-          // данные сохранены
-        } else {
-          // сервер вернул ошибку и не сохранил наши данные
+            $('#callback-modal').modal('hide');
+            common.notify(data.message,'success');
         }
     })
     .fail(function () {
          // не удалось выполнить запрос к серверу
     })
 
-    return false; // отменяем отправку данных формы
+    return false;
 })
 ");
