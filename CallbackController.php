@@ -10,6 +10,10 @@ use yii\widgets\ActiveForm;
 class CallbackController extends Controller
 {
 
+    /**
+     * @return \yii\web\Response
+     * @throws HttpException
+     */
     public function actionIndex()
     {
         $model = new CallbackForm();
@@ -21,11 +25,10 @@ class CallbackController extends Controller
                 $validator = ActiveForm::validate($model);
                 if ($validator)
                     return $this->asJson($validator);
-//    'SUCCESS_SEND_FORM' => 'Ваше сообщение успешно отправлено!',
-                if($model->validate()){
+                if ($model->validate()) {
                     $model->sendEmail();
                     return $this->asJson([
-                        'message'=>Yii::t('app/default','Ваше сообщение успешно отправлено!'),
+                        'message' => Yii::t('wgt_CallbackWidget/default', 'SEND_SUCCESS'),
                         'success' => true
                     ]);
                 }
@@ -36,8 +39,5 @@ class CallbackController extends Controller
             //throw new HttpException(403, Yii::t('app/error',403));
             throw new HttpException(403);
         }
-        /*return $this->renderAjax('myViewName', [
-            'model' => $model,
-        ]);*/
     }
 }

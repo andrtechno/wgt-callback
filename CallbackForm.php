@@ -22,15 +22,16 @@ class CallbackForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => 'Ваше имя',
-            'phone' => 'Номер телефона'
+            'username' => Yii::t('wgt_CallbackWidget/default', 'USERNAME'),
+            'phone' => Yii::t('wgt_CallbackWidget/default', 'PHONE')
         ];
     }
 
-    public function sendEmail(){
-        if(Yii::$app->settings->get('wgt_CallbackWidget', 'email')){
+    public function sendEmail()
+    {
+        if (Yii::$app->settings->get('wgt_CallbackWidget', 'email')) {
             $email = Yii::$app->settings->get('wgt_CallbackWidget', 'email');
-        }else{
+        } else {
             $email = Yii::$app->settings->get('app', 'email');
         }
         $mailer = Yii::$app->mailer;
@@ -38,7 +39,7 @@ class CallbackForm extends Model
         $mailer->compose(['html' => '@vendor/panix/wgt-callback/mail/mail.tpl'], ['model' => $this])
             ->setFrom(['noreply@' . Yii::$app->request->serverName => Yii::$app->name . ' robot'])
             ->setTo([$email => Yii::$app->name])
-            ->setSubject(Yii::t('default', '☎️ Обратный звонок'))
+            ->setSubject(Yii::t('wgt_CallbackWidget/default', 'SUBJECT'))
             ->send();
         return $mailer;
     }

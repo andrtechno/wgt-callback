@@ -8,8 +8,6 @@
 
 namespace panix\ext\callback;
 
-use yii\web\View;
-use yii\helpers\Json;
 use panix\engine\data\Widget;
 
 /**
@@ -47,8 +45,6 @@ class CallbackWidget extends Widget
     public function run()
     {
         $model = new CallbackForm;
-        $view = $this->getView();
-
         return $this->render($this->skin,['model'=>$model]);
     }
 

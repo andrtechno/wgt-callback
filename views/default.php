@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
  */
 Modal::begin([
         'id'=>$this->context->id,
-    'title' => 'Обратный звонок',
+    'title' => Yii::t('wgt_CallbackWidget/default','MODAL_TITLE'),
    // 'toggleButton' =>  $this->context->toggleButton,
     'toggleButton' => $this->context->toggleButton,
     'size' => $this->context->size,
@@ -19,7 +19,7 @@ Modal::begin([
 
 ?>
 
-    <p>Введите, пожалуйста, имя и ваш номер телефона, наш менеджер свяжется с вами в ближайшее время</p>
+    <p><?= Yii::t('wgt_CallbackWidget/default','TEXT'); ?></p>
 <?php
 
 
@@ -34,7 +34,7 @@ $form = ActiveForm::begin([
 
     <div class="form-group text-center">
 
-        <?= Html::submitButton('Перезвонить мне', ['class' => 'btn btn-outline-danger']) ?>
+        <?= Html::submitButton(Yii::t('wgt_CallbackWidget/default','BUTTON'), ['class' => 'btn btn-outline-danger']) ?>
 
     </div>
 <?php ActiveForm::end(); ?>
