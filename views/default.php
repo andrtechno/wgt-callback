@@ -54,6 +54,7 @@ $('#callback-form').on('beforeSubmit', function () {
        if(data.success) {
             $('#callback-modal').modal('hide');
             common.notify(data.message,'success');
+            $('#callback-form input').val('');
         }
     })
     .fail(function () {

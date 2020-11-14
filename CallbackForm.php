@@ -30,15 +30,16 @@ class CallbackForm extends Model
     public function sendEmail()
     {
         if (Yii::$app->settings->get('wgt_CallbackWidget', 'email')) {
-            $email = Yii::$app->settings->get('wgt_CallbackWidget', 'email');
+            $email = explode(',',Yii::$app->settings->get('wgt_CallbackWidget', 'email'));
         } else {
             $email = Yii::$app->settings->get('app', 'email');
         }
+
         $mailer = Yii::$app->mailer;
         $mailer->htmlLayout = '@app/mail/layouts/html';
         $mailer->compose(['html' => '@vendor/panix/wgt-callback/mail/mail.tpl'], ['model' => $this])
             ->setFrom(['noreply@' . Yii::$app->request->serverName => Yii::$app->name . ' robot'])
-            ->setTo([$email => Yii::$app->name])
+            ->setTo($email)
             ->setSubject(Yii::t('wgt_CallbackWidget/default', 'SUBJECT'))
             ->send();
         return $mailer;

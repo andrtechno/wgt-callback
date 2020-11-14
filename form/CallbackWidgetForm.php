@@ -2,8 +2,10 @@
 
 namespace panix\ext\callback\form;
 
+use panix\engine\CMS;
 use Yii;
 use panix\engine\blocks_settings\WidgetModel;
+use yii\validators\EmailValidator;
 
 class CallbackWidgetForm extends WidgetModel
 {
@@ -14,7 +16,7 @@ class CallbackWidgetForm extends WidgetModel
     public function rules()
     {
         return [
-            [['email'], 'email'],
+            [['email'], '\panix\engine\validators\EmailListValidator'],
             [['email'], 'required'],
         ];
     }
