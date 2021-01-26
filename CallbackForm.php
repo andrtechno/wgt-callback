@@ -38,7 +38,6 @@ class CallbackForm extends Model
         $mailer = Yii::$app->mailer;
         $mailer->htmlLayout = '@app/mail/layouts/html';
         $mailer->compose(['html' => '@vendor/panix/wgt-callback/mail/mail.tpl'], ['model' => $this])
-            ->setFrom(['noreply@' . Yii::$app->request->serverName => Yii::$app->name . ' robot'])
             ->setTo($email)
             ->setSubject(Yii::t('wgt_CallbackWidget/default', 'SUBJECT'))
             ->send();
