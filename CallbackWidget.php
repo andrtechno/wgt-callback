@@ -19,7 +19,7 @@ class CallbackWidget extends Widget
 
     static $widget_name = 'Callback widget';
     static $widget_description = 'Callback desctipyion';
-
+    public static $form = 'panix\ext\callback\form\CallbackWidgetForm';
     public $options = [];
     public $skin = 'default';
     public $id;
