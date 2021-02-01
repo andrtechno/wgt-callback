@@ -3,7 +3,7 @@
     "description": "Widget callback",
     "keywords": ["pixelion-cms", "extension", "widget", "callback"],
     "homepage": "https://github.com/andrtechno/wgt-callback",
-    "type": "yii2-extension",
+    "type": "pixelion-widget",
     "license": "MIT",
     "authors": [
         {
