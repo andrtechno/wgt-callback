@@ -48,6 +48,8 @@ echo \panix\ext\callback\CallbackWidget::widget([
     'toggleButton' => false,
     // modal options
 ]);
+
+echo Html::button('Callback', ['data-toggle' => 'modal','data-target' => '#callback-modal']);
 ```
 
 Add you UrlManager rules
