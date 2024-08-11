@@ -8,3 +8,6 @@
 {if $model.phone}
     <h2>{Html::tel($model.phone)}</h2>
 {/if}
+{if $model.url}
+    <h2>{$model.url}</h2>
+{/if}
