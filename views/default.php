@@ -25,7 +25,10 @@ $form = ActiveForm::begin([
     'action' => ['/callback'],
     'id' => 'callback-form',
     'options' => [],
-]) ?>
+]);
+$model->url = Yii::$app->request->getAbsoluteUrl();
+?>
+<?= $form->field($model, 'url')->hiddenInput()->label(false); ?>
 <?= $form->field($model, 'username') ?>
 
 <?= $form->field($model, 'phone')->widget(\panix\ext\telinput\PhoneInput::class) ?>
