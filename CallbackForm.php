@@ -9,12 +9,14 @@ class CallbackForm extends Model
 {
     public $username;
     public $phone;
+    public $url;
 
     public function rules()
     {
         return [
             [['username', 'phone'], 'required'],
             [['username'], 'string', 'min' => 2],
+            [['url'], 'string'],
             ['phone', 'panix\ext\telinput\PhoneInputValidator']
         ];
     }
@@ -23,14 +25,15 @@ class CallbackForm extends Model
     {
         return [
             'username' => Yii::t('wgt_CallbackWidget/default', 'USERNAME'),
-            'phone' => Yii::t('wgt_CallbackWidget/default', 'PHONE')
+            'phone' => Yii::t('wgt_CallbackWidget/default', 'PHONE'),
+            'url' => Yii::t('wgt_CallbackWidget/default', 'URL'),
         ];
     }
 
     public function sendEmail()
     {
         if (Yii::$app->settings->get('wgt_CallbackWidget', 'email')) {
-            $email = explode(',',Yii::$app->settings->get('wgt_CallbackWidget', 'email'));
+            $email = explode(',', Yii::$app->settings->get('wgt_CallbackWidget', 'email'));
         } else {
             $email = Yii::$app->settings->get('app', 'email');
         }
